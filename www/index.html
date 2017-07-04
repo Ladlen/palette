@@ -42,12 +42,14 @@
                                 expandable: true,
                                 position: {
                                     y: '0px'
-                                }
+                                },
+                                alphaSupport: true
                             },
                             images: {
                                 clientPath: 'vendor/jpicker-1.1.6/images/'
                             },
                             color: {
+                                alphaSupport: true,
                                 active: color
                             }
                         });
@@ -58,8 +60,8 @@
             var colorPatterns = {
                 hash: /^\s*#([0-F]{6})\s*$/i,
                 shortHash: /^\s*#([0-F])([0-F])([0-F])\s*$/i,
-                rgb: /^\s*rgb\s*\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)\s*$/i,
-                rgba: /^\s*rgba\s*\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*[\d\.]{1,5}\s*\)\s*$/i
+                rgb: /^\s*rgb\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)\s*$/i,
+                rgba: /^\s*rgba\s*\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([\d\.]{1,5})\s*\)\s*$/i
             };
 
             var numberDetected = false;
@@ -78,7 +80,7 @@
                             numberDetected = {r: matches[1], g: matches[2], b: matches[3]};
                             break;
                         case 'rgba':
-                            numberDetected = {r: matches[1], g: matches[2], b: matches[3], a: matches[4]};
+                            numberDetected = {r: matches[1], g: matches[2], b: matches[3], a: matches[4] * 255};
                             break;
                         default:
                             break;
