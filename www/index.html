@@ -7,10 +7,21 @@
 </head>
 <body>
 
-<input type="text" id="c_text">
+<input type="text" name="c_text_1">
 <input type="color" id="c_color">
 
 <script>
+    var textExtendWithColor = ['c_text_1', 'c_text_2', 'c_text_3'];
+
+    function convertColorValue(val) {
+        var colorPatterns = {
+            hash: /^\s*#[0-F]{6}$/i,
+            shortHash: /^\s*#[0-F]{3}$/i,
+            rgb: /^\s*rgb\s*\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)\s*$/i,
+            rgba: /^\s*rgba\s*\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*[\d\.]{1,5}\s*\)\s*$/i
+        };
+    }
+
     jQuery(function ($) {
         $("#c_color").change(function () {
             $("#c_text").val($(this).val());
