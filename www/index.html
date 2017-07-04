@@ -26,16 +26,15 @@
     jQuery(function ($) {
         var textExtendWithColor = ['c_text_1', 'c_text_2', 'c_text_3', 'c_text_4', 'c_text_5', 'c_text_6'];
 
-        var jPickerCount = 0;
         for (var inputName in textExtendWithColor) {
             var input = $("form input[name='" + textExtendWithColor[inputName] + "']");
             if (input.length) {
                 var color = convertColorValue(input.val());
                 if (color) {
-                 color = new $.jPicker.Color(color);
-                 } else {
-                 color = new $.jPicker.Color();
-                 }
+                    color = new $.jPicker.Color(color);
+                } else {
+                    color = new $.jPicker.Color();
+                }
                 var span = $("<span>").insertAfter(input);
                 span.jPicker(
                         {
@@ -53,31 +52,30 @@
                                 alphaSupport: true,
                                 active: color
                             }
-                        });
+                        },
+                        function (color, context) {
+                            var hex = color.val('hex');
+                            $(this).prev().val('#' + hex);
+                        }
+                );
 
-
-
-                input.data('jPicker', jPickerCount);
-
-                ++jPickerCount;
+                input.data('jPicker', span);
 
                 input.keyup(function () {
                     var color = convertColorValue($(this).val());
                     if (color) {
                         for (var cName in color) {
-                            $.jPicker.List[$(this).data('jPicker')].color.active.val(cName, color[cName], this);
+                            $(this).data('jPicker')[0].color.active.val(cName, color[cName], this);
                             if (cName == 'hex') {
-                                $.jPicker.List[$(this).data('jPicker')].color.active.val('a', '255', this);
+                                $(this).data('jPicker')[0].color.active.val('a', '255', this);
                             }
                         }
                     } else {
-                        $.jPicker.List[$(this).data('jPicker')].color.active.val('r', '0', this);
-                        $.jPicker.List[$(this).data('jPicker')].color.active.val('g', '0', this);
-                        $.jPicker.List[$(this).data('jPicker')].color.active.val('b', '0', this);
-                        $.jPicker.List[$(this).data('jPicker')].color.active.val('a', '0', this);
+                        $(this).data('jPicker')[0].color.active.val('r', '0', this);
+                        $(this).data('jPicker')[0].color.active.val('g', '0', this);
+                        $(this).data('jPicker')[0].color.active.val('b', '0', this);
+                        $(this).data('jPicker')[0].color.active.val('a', '0', this);
                     }
-                    //$(this).data('jPicker')[0].jPicker.color.active.val(color);
-                    //$(this).next('span').jPicker.color.active.val(color);
                 });
             }
         }
