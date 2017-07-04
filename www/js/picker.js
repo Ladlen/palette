@@ -1,5 +1,6 @@
 jQuery(function ($) {
     var textExtendWithColor = ['c_text_1', 'c_text_2', 'c_text_3', 'c_text_4', 'c_text_5', 'c_text_6'];
+    //var textExtendWithColor = ['colordefault', 'colordefaultfon', 'colordefaultbutton', 'colordefaulttext', 'colordefaultpk'];
 
     for (var inputName in textExtendWithColor) {
         var input = $("form input[name='" + textExtendWithColor[inputName] + "']");

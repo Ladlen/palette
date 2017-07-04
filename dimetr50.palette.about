@@ -11,3 +11,98 @@ http://obn-test.shopsn.su/admin
 test@mail.ru
 test123
 Вкладка шаблоны в самом низу там цвета и т д нажми и увидишь эту форму
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Основной код находится в отдельных файлах. Кроме отсутствия прав на запись новых файлов, я даже не знаю где ваши внешние файлы находятся. Из интернета, могу предположить, это будут ссылки с путями вроде /assets/js/, /assets/css.
+
+Поэтому подключаемые внешние файлы находятся пока на стороннем ресурсе. Вы должны скачать их и залить к себе.
+
+Собственно в templates.php изменения следующие:
+Подключаются
+<link rel="Stylesheet" type="text/css" href="http://your-needs.000webhostapp.com/temp/jPicker-1.1.6.min.css"/>
+<link rel="Stylesheet" type="text/css" href="http://your-needs.000webhostapp.com/temp/jPicker.css"/>
+
+и
+
+<script type="text/javascript" src="http://your-needs.000webhostapp.com/temp/jpicker-1.1.6.min.js"></script>
+<script type="text/javascript" src="http://your-needs.000webhostapp.com/temp/picker.js"></script>
+
+Непосредственно после подключения файлов стилей в теге <style> идет коррекция стилей для jPicker.
+
+Скачайте вышеуказанные подключаемые внешние файлы и замените http://your-needs.000webhostapp.com на ваши пути.
+
+Поля цветов поддерживают следующие типы цветов: #XXXXX, #XXX, rgb(), rgba().
+
+В файле picker.js в переменной textExtendWithColor устанавливаются имена текстовых полей, которые должны будут получить функционал выбора цвета при загрузке сайта. Поле с названием colorshopnewfon у вас дублируется, поэтому вы увидите по два квадрата для выбора цвета. Думаю это ваша ошибка, дублирование полей с одинаковым именем (по идее такого ведь не должно быть?), так что я не стал ничего исправлять.
+Полю с меткой "Цвет блоков(укажите путь):" я не стал устанавливать выбор цвета (если я правильно понял, он там не нужен).
+
+Ещё один момент: для корректной работы в файле picker.js устанавливается путь к изображениям, которые использует колорпикер (сейчас это строка в нем clientPath: 'http://your-needs.000webhostapp.com/temp/images/').
+Нужно будет также скачать все изображения куда-нибудь в свою папку и указать url к ним в picker.js
+
+Если хотите чтобы я сам окончил работу по переносу, то видимо мне потребуются новые доступы.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+duplicate: colorshopnewfon (Цвет фона товаров)
+Цвет блоков(укажите путь): - не стал устанавливать
+
+
+coloraqua
+coloraquabg
+coloraquapk
+colorboxyverx
+colorboxypay
+colorboxyopl
+colorelegantmn
+colorelegantpay
+colorelegantop
+colorgamefon
+colorgameverx
+colorgameopl
+colorlibertyverx
+colorlibertyitem
+colorlibertyblock
+colorlibertyfon
+colorliteblock
+colorliteverx
+colorliteitem
+colorlitenazv
+colorlolipopklick
+colorlolipopklickfn
+colorperfectblock
+colorperfectverx
+colordeercateg
+colordeertovar
+colordeeritem
+colordeerprt
+colorshopnewverx
+colorshopnewnuz
+colorshopnewpay
+colorshopnewfon
+colorwhitebsok
+colorwhitebstext
+colorwhitebspay
+colorshopnewfon
+colorlilacpay
+colorlilaccn
+colorlilacfon
+colorcrazzyfon
+colorluckyverx
+colorluckynuz
+colorluckyfon
+colorkeysnuz
+colorkeysfon
+colorkeysfonn
+colorwfpanel
+colorwffonp
+colorwffon
+colorlqshopfon
+colorlqshopverx
+colorlqshoppay
+colorlqshoppayn
+colorlqshoppayk
+colorlqshoppayopl
+colorlqshopborder
+colorlqshopcolor
+
