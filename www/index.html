@@ -29,11 +29,26 @@
         for (var inputName in textExtendWithColor) {
             var input = $("form input[name='" + textExtendWithColor[inputName] + "']");
             if (input.length) {
+                var color = convertColorValue(input.val());
+                if (color) {
+                    color = new $.jPicker.Color(color);
+                } else {
+                    color = new $.jPicker.Color();
+                }
                 var span = $("<span>").insertAfter(input);
                 span.jPicker(
                         {
                             window: {
-                                expandable: true
+                                expandable: true,
+                                position: {
+                                    y: '0px'
+                                }
+                            },
+                            images: {
+                                clientPath: 'vendor/jpicker-1.1.6/images/'
+                            },
+                            color: {
+                                active: color
                             }
                         });
             }
